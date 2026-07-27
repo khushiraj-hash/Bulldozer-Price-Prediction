@@ -1,14 +1,14 @@
 # 🚜 Bulldozer Price Prediction
 
-A machine learning project that predicts the sale price of bulldozers using historical auction data. This project follows an end-to-end machine learning workflow, including data preprocessing, feature engineering, model training, hyperparameter tuning, evaluation, and feature importance analysis.
+An end-to-end machine learning project that predicts **bulldozer auction sale prices** using historical auction data and a **Random Forest Regressor**. This project demonstrates the complete machine learning workflow, including exploratory data analysis (EDA), feature engineering, data preprocessing, model training, hyperparameter tuning, evaluation, and feature importance analysis.
 
 ---
 
 ## 📌 Project Overview
 
-The goal of this project is to build a regression model capable of predicting the sale prices of bulldozers based on their specifications, manufacturing details, and historical sales information.
+The objective of this project is to build a regression model that accurately predicts the sale price of bulldozers based on their specifications, manufacturing details, and historical sales data.
 
-The dataset contains information such as the machine's manufacturing year, product size, enclosure type, usage details, and sale date. After preprocessing the data and engineering useful features, a **Random Forest Regressor** was trained to predict bulldozer sale prices.
+Using the **Blue Book for Bulldozers** dataset, I performed data cleaning, feature engineering, handled missing values, encoded categorical variables, trained a Random Forest Regressor, optimized its hyperparameters, and generated predictions on unseen test data.
 
 ---
 
@@ -18,7 +18,7 @@ The dataset contains information such as the machine's manufacturing year, produ
 * **Problem Type:** Regression
 * **Target Variable:** `SalePrice`
 
-The dataset includes information about:
+The dataset contains information about:
 
 * Machine specifications
 * Manufacturing details
@@ -41,50 +41,71 @@ The dataset includes information about:
 
 ## 📊 Machine Learning Workflow
 
-1. Data Loading
-2. Exploratory Data Analysis (EDA)
-3. Data Cleaning
-4. Feature Engineering
-
-   * Extracted:
-
-     * `saleYear`
-     * `saleMonth`
-     * `saleDay`
-     * `saleDayofweek`
-     * `saleDayofyear`
-5. Handling Missing Values
-6. Encoding Categorical Variables
-7. Model Training using Random Forest Regressor
-8. Hyperparameter Tuning with RandomizedSearchCV
-9. Model Evaluation
-10. Feature Importance Analysis
-11. Test Set Predictions
+* Loaded and explored the dataset
+* Performed Exploratory Data Analysis (EDA)
+* Parsed date columns and engineered new date features
+* Handled missing values
+* Converted categorical variables into numerical values
+* Split the data into training and validation sets
+* Trained a Random Forest Regressor
+* Tuned hyperparameters using RandomizedSearchCV
+* Evaluated model performance using RMSLE
+* Generated predictions on the test dataset
+* Analyzed feature importance
 
 ---
 
-## 📈 Model Evaluation
+## 📈 Feature Engineering
 
-The model was evaluated using **Root Mean Squared Log Error (RMSLE)**, which is well-suited for predicting prices because it penalizes proportional errors rather than absolute errors.
+The following features were extracted from the `saledate` column:
+
+* `saleYear`
+* `saleMonth`
+* `saleDay`
+* `saleDayofweek`
+* `saleDayofyear`
+
+These engineered features enabled the model to learn seasonal and time-based trends that influence bulldozer sale prices.
+
+---
+
+## 🤖 Model Used
+
+**Random Forest Regressor**
+
+Random Forest was selected because it performs well on structured/tabular data, can capture complex relationships between features, handles missing values effectively, and is less prone to overfitting than a single decision tree.
+
+---
+
+## 📉 Model Evaluation
+
+The model was evaluated using **Root Mean Squared Log Error (RMSLE)**, which is particularly suitable for price prediction problems because it penalizes proportional prediction errors rather than absolute errors.
+
+---
+
+## 📊 Results
+
+The Random Forest Regressor successfully learned meaningful patterns from the dataset and generated predictions on unseen test data.
+
+### Key observations:
+
+* Successfully handled missing values and categorical variables.
+* Feature engineering improved the model's ability to capture time-related trends.
+* Hyperparameter tuning improved model performance.
+* Feature importance analysis showed that **YearMade, ProductSize, Enclosure, and saleYear** had the greatest influence on predicting bulldozer prices.
 
 ---
 
 ## ⭐ Top Important Features
 
-The most influential features identified by the Random Forest model were:
+The Random Forest model identified the following features as the most important:
 
 * YearMade
 * ProductSize
 * Enclosure
 * saleYear
 
-These features are highly relevant because they capture the machine's age, size, specifications, and the market conditions at the time of sale, all of which have a significant impact on the selling price.
-
----
-
-## 📷 Feature Importance
-
-The project includes a feature importance visualization showing how each feature contributes to the model's predictions.
+These features are highly relevant because they describe the bulldozer's age, size, specifications, and the market conditions at the time of sale. Their high importance indicates that the model learned meaningful patterns from the data rather than relying on random or unrelated variables.
 
 ---
 
@@ -94,6 +115,7 @@ The project includes a feature importance visualization showing how each feature
 bulldozer-price-prediction-project/
 │
 ├── data/
+│   └── bluebook-for-bulldozers/
 ├── bulldozer-price-prediction.ipynb
 ├── environment.yml
 ├── .gitignore
@@ -102,23 +124,63 @@ bulldozer-price-prediction-project/
 
 ---
 
-## 🚀 Key Learnings
+## ▶️ How to Run
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/khushiraj-hash/Bulldozer-Price-Prediction.git
+```
+
+2. Navigate to the project directory
+
+```bash
+cd Bulldozer-Price-Prediction
+```
+
+3. Create the conda environment
+
+```bash
+conda env create -f environment.yml
+```
+
+4. Activate the environment
+
+```bash
+conda activate ./env
+```
+
+*(If your environment has a different name, activate that instead.)*
+
+5. Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+6. Open `bulldozer-price-prediction.ipynb` and run all cells.
+
+---
+
+## 🎯 Key Learnings
 
 Through this project, I learned how to:
 
 * Perform exploratory data analysis on real-world datasets.
-* Handle missing values in both numerical and categorical features.
+* Handle missing values in numerical and categorical features.
 * Engineer meaningful features from date columns.
 * Encode categorical variables for machine learning models.
 * Train and tune a Random Forest Regressor.
 * Evaluate regression models using RMSLE.
 * Interpret feature importance to understand model behavior.
+* Build an end-to-end machine learning workflow using Scikit-learn.
 
 ---
 
-## 🔮 Future Improvements
+## 🚀 Future Improvements
 
-* Experiment with Gradient Boosting models such as XGBoost, LightGBM, or CatBoost.
-* Perform more extensive feature engineering.
-* Build a preprocessing pipeline using Scikit-learn Pipelines.
-* Deploy the trained model as a web application.
+* Experiment with Gradient Boosting models such as XGBoost, LightGBM, and CatBoost.
+* Build a complete Scikit-learn preprocessing pipeline.
+* Perform additional feature engineering.
+* Deploy the trained model using Streamlit or Flask.
+* Compare multiple regression models to improve prediction accuracy.
