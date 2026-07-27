@@ -122,9 +122,3 @@ Through this project, I learned how to:
 * Perform more extensive feature engineering.
 * Build a preprocessing pipeline using Scikit-learn Pipelines.
 * Deploy the trained model as a web application.
-
----
-
-## 🙏 Acknowledgements
-
-This project was completed as part of the **Complete A.I. & Machine Learning, Data Science Bootcamp** by **Andrei Neagoie** and **Daniel Bourke**, using the Blue Book for Bulldozers dataset for educational purposes.
